@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" onsubmit="return validateForm()" onreset="formReset()">
+        <label for="name">Name</label>
+        <input type="text" placeholder="Enter your name" id="name"/>
+        <span id = "name-err"></span>
+
+        <label for="password">Password</label>
+        <input type="text" placeholder="Enter your password" id="password"/>
+        <span id = "pass-err"></span>
+
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter you email" id="email"/>
+        <span id="email-err"></span>
+
+        <input type="submit" id="submit" value="Send" name="send"/>
+        <input type="reset" id="reset" value="Reset" name="reset"/>
+    </form>
+
+    <script >
+        function validateForm() {
+            const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value;
+
+        const nameErr = document.getElementById("name-err");
+        const passErr = document.getElementById("pass-err");
+        const emailErr = document.getElementById("email-err");
+
+        nameErr.textContent = "";
+        passErr.textContent = "";
+        emailErr.textContent = "";
+
+        let isValid = true;
+
+        if(name == "" || /\d/.test(name)) {
+            nameErr.textContent = "Please enter a valod name";
+            isValid = false;
+        }
+
+        if(password == "" || password.length < 6) {
+            passErr.textContent = "Please enter a valid password";
+            isValid = false;
+        }
+
+        if(email == "" || !email.includes('@') || !email.includes('.')) {
+            emailErr.textContent = "Please enter a valid email address";
+            isValid = false;
+        }
+
+        if(isValid) {
+            alert("Form submit successfully");
+            return true;
+        } else {
+            return false;
+        }
+        }
+
+        function formReset() {
+            document.getElementById("name-err").textContent = "";
+            document.getElementById("pass-err").textContent = "";
+            document.getElementById("email-err").textContent = "";
+        }
+    </script>
+</body>
+</html>
